@@ -1,31 +1,37 @@
-# Identifying Reddit Topics Using K-Means
+# Clustering Player Groups from the NBA Roster
 
-Reddit is an online discussion site, where people come together to bring up and discuss about various topics. A sample of about 6000 reddit posts was provided. The objective of this notebook was to identify the topics present among them.
+## Summary
 
-The data was preprocessed by cleaning and removal of duplicated entries, and the frequently-appearing terms in the post titles were identified in order to get preliminary insights as to what the topics might be.
+Basketball is a sport in which numerous statistics can be derived from players. From points and assists, to blocks and steals, each basketball game offers rich data that people can make use of to generate insights. The objective of this study was to cluster players based on their statistics and attempt to identify who the best players are in the NBA, and which other players are most similar to them.
 
-Clustering was performed on the the clean post titles. First, the post titles were vectorized using TDF-IDF. After that, the dimensionality of the vectors was reduced using TSVD. The criterion for dimensionality reduction was that the cumulative variance explained needed to be at least 80%. K-Means clustering was then performed and the optimum number(s) of clusters was taken based on internal validation criteria. The clusters formed were interpreted in an attempt to identify the topic of each.
+Player data per game was collected from the Basketball Reference Website for players in the 2018-2019 NBA season. The data was cleaned and preprocessed. Some preprocessing done includes: delimiter rows were removed, duplicated entries due to player trades were consolidated, numeric columns that were interpreted as objects were cast as numeric (int or float).
 
-## Project Rationale
+Exploratory data analysis was performed for the purpose of dimensionality reduction. Although manual feature selection based on domain knowledge was used to reduce dimensionality, correlations were also taken into account in removing variables. Furthermore, principal component analysis (PCA) was done in order to identify the features which contribute more to the variance. However, PCA was not used for any purpose other than for deriving insights for the manual feature selection.
 
-Reddit can be an interesting space to observe social phenomena. It functions almost like an interactive bulletin board, but with much greater accessibility due to it being online. By analyzing a sample of reddit posts we may be able to gain insights about online users' interests.
+The data was scaled using the MinMaxScaler in order to mitigate the effect of variables with large magnitudes. KMeans clustering was performed on the players for each of the five most recent seasons of the NBA, and it was discovered that two clusters stood out each year in terms of efficiency: the star Point Guard cluster and the star Center cluster. This does not mean that players from other positions could not excel - rather, they were clustered into one of these two clusters.
+
+Coaches should look out for the players in the two star clusters each year. These clusters are provided in the Conclusion section for reference.
 
 ## Writeup and Output Viewing
 
 A Jupyter Notebook contains codes used as well as the project output.
 
-See `notebooks/Identifying Reddit Topics Using K-Means.ipynb`
+See `notebooks/Clustering Player Groups from the NBA Roster.ipynb`
 
 ## Repository Structure
 
 ### notebooks
 
-Contains the main notebook `Identifying Reddit Topics Using K-Means.ipynb` detailing analyses done on the data as well as pertinent findings and insights.
+Contains the main notebook `Clustering Player Groups from the NBA Roster.ipynb` detailing analyses done on the data as well as pertinent findings and insights.
 
-### reddit_mini_project
+#### archive
+
+Contains the notebook `Web Scraping Notebook.ipynb.ipynb` which contains code used to scrape a basketball reference web page for the player data.
+
+### nba_playerclusters
 
 Contains documented, user-defined utility functions used for analysis.
 
 ### data
 
-Contains a text file with a small sample of about 6000 reddit posts.
+Contains an sqlite database file where I stored the data scraped from the basketball reference website.
