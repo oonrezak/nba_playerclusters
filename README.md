@@ -24,7 +24,7 @@ See `notebooks/Clustering Player Groups from the NBA Roster.ipynb`
 
 Contains the main notebook `Clustering Player Groups from the NBA Roster.ipynb` detailing analyses done on the data as well as pertinent findings and insights.
 
-#### archive
+#### notebooks/archive
 
 Contains the notebook `Web Scraping Notebook.ipynb.ipynb` which contains code used to scrape a basketball reference web page for the player data.
 
